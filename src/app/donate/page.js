@@ -185,9 +185,10 @@ const PageContent = () => {
         const rzp = new window.Razorpay(options);
         rzp.open();
       })
-      .catch(() => {
+      .catch((err) => {
         setLoading(false);
-        alert("Something went wrong.");
+        console.error("Donation error:", err);
+        alert("Something went wrong: " + err.message);
       });
   };
 

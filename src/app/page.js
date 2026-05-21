@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Heart, Target, Users, TrendingUp, ArrowRight, CheckCircle, Clock } from "lucide-react";
 import Skeleton from "@/components/Skeleton";
+import Home_Hero_section from "@/components/Home_Hero_section";
 
 export default function Home() {
   const router = useRouter();
@@ -18,8 +19,9 @@ export default function Home() {
     monthlyGrowth: 0,
   });
 
+
   useEffect(() => {
-    fetch('/api/donations', { credentials:'include' })
+    fetch('/api/donations', { credentials: 'include' })
       .then(res => res.json())
       .then(data => {
         const total = data.donations?.reduce((sum, d) => sum + (d.amount || 0), 0) || 0;
@@ -74,7 +76,7 @@ export default function Home() {
 
   ///share campaign///
 
-  
+
 
   if (loading) {
     return <Skeleton />;
@@ -83,46 +85,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 pt-16"> {/* Added pt-16 for fixed navbar */}
       {/* Hero Banner - Mobile Optimized */}
-      <div className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 text-white">
-        <div className="absolute inset-0 bg-black/10"></div>
-        {/* Background Circles - Hidden on mobile for performance */}
-        <div className="hidden sm:block absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
-        <div className="hidden sm:block absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
-
-        <div className="relative max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-28">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-4 sm:mb-6 border border-white/20">
-              <Heart className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="text-xs sm:text-sm font-medium">
-                Trusted by {formatNumber(stats.totalDonors)}+ Donors
-              </span>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-snug sm:leading-tight">
-              Create Lasting <span className="text-yellow-300">Change</span>
-            </h1>
-
-            <p className="text-sm sm:text-base md:text-xl text-blue-100 mb-6 sm:mb-10 max-w-2xl">
-              Support verified campaigns that transform lives. Every donation makes a difference.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <button
-                onClick={() => document.getElementById('campaigns')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-6 py-2.5 sm:px-8 sm:py-3 bg-yellow-400 text-blue-900 font-bold rounded-full hover:bg-yellow-300 transition-all active:scale-95 sm:hover:scale-105 shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base"
-              >
-                Donate Now <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-              <button
-                onClick={() => router.push("/howitswork")}
-                className="px-6 py-2.5 sm:px-8 sm:py-3 bg-transparent border border-white sm:border-2 rounded-full hover:bg-white/10 transition-all active:scale-95 text-sm sm:text-base"
-              >
-                How It Works
-              </button>
-            </div>
-          </div>
-        </div>
+      {/* Hero Banner */}
+      <div className="relative w-full h-[500px]">
+        <Home_Hero_section />
       </div>
+
 
       {/* Stats Section - Mobile Optimized Grid */}
       <div className="max-w-7xl mx-auto px-3 sm:px-4 mt-6 sm:-mt-8 md:mt-10">
@@ -232,10 +199,10 @@ export default function Home() {
                           <span className="sm:hidden">Done</span>
                         </div>
                       ) : (
-                  <div>
-                    
-                  </div>
-                        
+                        <div>
+
+                        </div>
+
                       )}
                     </div>
                   </div>

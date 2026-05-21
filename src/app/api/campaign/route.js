@@ -7,7 +7,7 @@ import { v2 as cloudinary } from "cloudinary";
 cloudinary.config({
     cloud_name: process.env.Cloudinary_Name,
     api_key: process.env.Cloudinary_API_Key,
-    api_secret: process.env.Cloudinary_API_Secret, // Click 'View API Keys' above to copy your API secret
+    api_secret: process.env.Cloudinary_API_Secret, 
 });
 
 export async function POST(req) {
