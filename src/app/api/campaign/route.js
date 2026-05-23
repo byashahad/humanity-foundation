@@ -7,7 +7,7 @@ import { v2 as cloudinary } from "cloudinary";
 cloudinary.config({
     cloud_name: process.env.Cloudinary_Name,
     api_key: process.env.Cloudinary_API_Key,
-    api_secret: process.env.Cloudinary_API_Secret, 
+    api_secret: process.env.Cloudinary_API_Secret,
 });
 
 export async function POST(req) {
@@ -20,7 +20,6 @@ export async function POST(req) {
         const title = data.get("title");
         const description = data.get("description");
         const targetAmount = parseFloat(data.get("targetAmount"));
-        // const createdBy = data.get("createdBy");
         const mediaFiles = data.getAll("media"); // multiple files
         const media = [];
 
@@ -33,7 +32,7 @@ export async function POST(req) {
                 const stream = cloudinary.uploader.upload_stream(
                     {
                         folder: "Donations",
-                        resource_type: "auto", // image / video / pdf etc
+                        resource_type: "auto",
                     },
                     (error, result) => {
                         if (error) {
@@ -46,12 +45,12 @@ export async function POST(req) {
                 stream.end(buffer);
             });
             media.push({
-                url: result.secure_url,         // ✅ Schema ke hisaab se "url"
-                publicID: result.public_id      // ✅ Schema ke hisaab se "publicID"
+                url: result.secure_url,
+                publicID: result.public_id
             });
         }
 
-        // basic required check (same style as tera code)
+        //
         if (!title || !description || !targetAmount) {
             return NextResponse.json(
                 { message: "Missing required fields" },
@@ -62,7 +61,7 @@ export async function POST(req) {
         // simple slug generation (no library)
         const slug = title.toLowerCase().trim().replace(/\s+/g, "-");
 
-        const newCampaign = Campaign.create({
+        const newCampaign = await Campaign.create({
             title,
             slug,
             description,

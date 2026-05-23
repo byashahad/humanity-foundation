@@ -10,7 +10,7 @@ import { useSearchParams } from "next/navigation";
 const PageContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const id = searchParams.get("id"); // Agar URL mein ?id=... hai to edit mode
+  const id = searchParams.get("id"); 
 
   // State variables
   const [data, setData] = useState({
@@ -84,9 +84,7 @@ const PageContent = () => {
     setNewImages(newImages.filter((_, i) => i !== index));
   };
 
-  // ============================================
-  // 3. SUBMIT: CREATE YA UPDATE CAMPAIGN
-  // ============================================
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

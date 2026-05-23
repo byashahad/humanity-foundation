@@ -87,7 +87,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 pt-16"> {/* Added pt-16 for fixed navbar */}
       {/* Hero Banner - Mobile Optimized */}
       {/* Hero Banner */}
-      <div className="relative w-full h-[500px]">
+      <div className="relative w-full h-[500px]  ">
 
         {loading && (
           <div className="absolute inset-0 z-10">

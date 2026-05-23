@@ -59,7 +59,7 @@ const campaignSchema = new mongoose.Schema(
   }
 );
 
-// 🔥 Virtual field for progress percentage
+
 campaignSchema.virtual("progress").get(function () {
   if (!this.targetAmount || this.targetAmount === 0) return 0;
   return Math.min(
