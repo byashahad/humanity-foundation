@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation"; // 🔴 STEP 1: useRouter import kar
+import { usePathname, useRouter } from "next/navigation";
 import { useAppContext } from "./Context";
 import {
     Menu,
@@ -15,7 +15,9 @@ import {
     ChevronRight,
     User,
     PlusIcon,
-    UserLock
+    UserLock,
+    Image,
+
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
@@ -40,6 +42,7 @@ const Sidebar = () => {
         { name: "Campaigns-create", href: "/admin/campaigning/create", icon: <PlusIcon size={20} /> },
         { name: "Subscribers", href: "/admin/campaigning/subscribers", icon: <MailCheck size={20} /> },
         { name: "Contact Queries", href: "/admin/campaigning/query", icon: <MessageCircle size={20} /> },
+        { name: "Home Banner", href: "/admin/campaigning/homebanner", icon: <Image size={20} /> },
     ];
 
     // 🔴 STEP 4: HANDLE LOGOUT FUNCTION - Yahi tera main code hai!

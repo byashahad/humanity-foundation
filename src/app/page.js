@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Heart, Target, Users, TrendingUp, ArrowRight, CheckCircle, Clock } from "lucide-react";
 import Skeleton from "@/components/Skeleton";
 import Home_Hero_section from "@/components/Home_Hero_section";
+import BannerSkeleton from "@/components/BannerSkeleton";
 
 export default function Home() {
   const router = useRouter();
@@ -87,12 +88,20 @@ export default function Home() {
       {/* Hero Banner - Mobile Optimized */}
       {/* Hero Banner */}
       <div className="relative w-full h-[500px]">
+
+        {loading && (
+          <div className="absolute inset-0 z-10">
+            <BannerSkeleton />
+          </div>
+        )}
+
         <Home_Hero_section />
+
       </div>
 
 
       {/* Stats Section - Mobile Optimized Grid */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 mt-6 sm:-mt-8 md:mt-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 mt-6 sm:-mt-8 md:mt-30">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
           <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-md sm:shadow-lg border border-gray-100 text-center">
             <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-blue-600 mb-1 sm:mb-2">

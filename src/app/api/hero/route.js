@@ -45,11 +45,12 @@ export async function POST(req) {
             });
         }
 
-        const newHero = new Hero({
-            title,
-            media: media
-        })
-        await newHero.save();
+        const hero = await Hero.findOneAndUpdate(
+            {},  // pehla document dhundho
+            { title, media },
+            { upsert: true, new: true }  // nahi hai toh banao
+        );
+        await hero.save();
         return NextResponse.json(
             {
                 success: true,
